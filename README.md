@@ -2,12 +2,12 @@
   <img src="https://cdn.microlink.io/logo/banner.png" alt="microlink">
 </div>
 
-![Last version](https://img.shields.io/github/tag/microlinkhq/aysnc-memoize-one.svg?style=flat-square)
-[![Build Status](https://img.shields.io/travis/com/microlinkhq/aysnc-memoize-one/master.svg?style=flat-square)](https://travis-ci.com/microlinkhq/aysnc-memoize-one)
-[![Coverage Status](https://img.shields.io/coveralls/microlinkhq/aysnc-memoize-one.svg?style=flat-square)](https://coveralls.io/github/microlinkhq/aysnc-memoize-one)
-[![Dependency status](https://img.shields.io/david/microlinkhq/aysnc-memoize-one.svg?style=flat-square)](https://david-dm.org/microlinkhq/aysnc-memoize-one)
-[![Dev Dependencies Status](https://img.shields.io/david/dev/microlinkhq/aysnc-memoize-one.svg?style=flat-square)](https://david-dm.org/microlinkhq/aysnc-memoize-one#info=devDependencies)
-[![NPM Status](https://img.shields.io/npm/dm/aysnc-memoize-one.svg?style=flat-square)](https://www.npmjs.org/package/aysnc-memoize-one)
+![Last version](https://img.shields.io/github/tag/microlinkhq/async-memoize-one.svg?style=flat-square)
+[![Build Status](https://img.shields.io/travis/com/microlinkhq/async-memoize-one/master.svg?style=flat-square)](https://travis-ci.com/microlinkhq/async-memoize-one)
+[![Coverage Status](https://img.shields.io/coveralls/microlinkhq/async-memoize-one.svg?style=flat-square)](https://coveralls.io/github/microlinkhq/async-memoize-one)
+[![Dependency status](https://img.shields.io/david/microlinkhq/async-memoize-one.svg?style=flat-square)](https://david-dm.org/microlinkhq/async-memoize-one)
+[![Dev Dependencies Status](https://img.shields.io/david/dev/microlinkhq/async-memoize-one.svg?style=flat-square)](https://david-dm.org/microlinkhq/async-memoize-one#info=devDependencies)
+[![NPM Status](https://img.shields.io/npm/dm/async-memoize-one.svg?style=flat-square)](https://www.npmjs.org/package/async-memoize-one)
 
 > Memoize the last result, in async way.
 
