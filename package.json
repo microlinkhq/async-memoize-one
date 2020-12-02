@@ -2,7 +2,7 @@
   "name": "async-memoize-one",
   "description": "memoize the last result, in async way",
   "homepage": "https://nicedoc.io/microlinkhq/async-memoize-one",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "index.js",
   "author": {
     "email": "hello@microlink.io",
