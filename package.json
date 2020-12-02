@@ -5,8 +5,8 @@
   "version": "0.0.0",
   "main": "index.js",
   "author": {
-    "name": "microlink.io",
     "email": "hello@microlink.io",
+    "name": "microlink.io",
     "url": "https://microlink.io"
   },
   "repository": {
@@ -51,8 +51,11 @@
     "standard-version": "latest"
   },
   "engines": {
-    "node": ">= 10"
+    "node": ">= 12"
   },
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "clean": "rm -rf node_modules",
     "contributors": "(git-authors-cli && finepack && git add package.json && git commit -m 'build: contributors' --no-verify) || true",
