@@ -1,5 +1,7 @@
 'use strict'
 
+const pReflect = require('p-reflect')
+const delay = require('delay')
 const test = require('ava')
 
 const memoizeOne = require('..')
@@ -44,4 +46,38 @@ test('does not use cache on new params', async t => {
   const secondResponse = await memoizedCall(1, 2, 4)
 
   t.is(secondResponse, 27)
+})
+
+test('prevent race condition', async t => {
+  let i = 0
+
+  const call = async () => {
+    const value = ++i
+    return value
+  }
+
+  const memoizedCall = memoizeOne(call)
+
+  await Promise.all([memoizedCall(), memoizedCall(), memoizedCall()])
+
+  t.is(i, 1)
+})
+
+test('`{ cachePromiseRejection: true }`', async t => {
+  let i = 0
+
+  const call = async () => {
+    const value = ++i
+    if (value === 1) throw new Error('oh no')
+    return value
+  }
+
+  const memoizedCall = memoizeOne(call)
+
+  pReflect(memoizedCall())
+  await delay(100)
+  pReflect(memoizedCall())
+  pReflect(memoizedCall())
+
+  t.is(i, 2)
 })
