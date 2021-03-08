@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/microlinkhq/async-memoize-one/compare/v1.0.1...v1.1.0) (2021-03-08)
+
+
+### Features
+
+* prevent race condition and failed promises ([b30964a](https://github.com/microlinkhq/async-memoize-one/commit/b30964ae4c13542f82984f91d783edba2efc0d80))
+
 ### [1.0.1](https://github.com/microlinkhq/async-memoize-one/compare/v1.0.0...v1.0.1) (2020-12-02)
 
 
