@@ -46,7 +46,7 @@ const fetchData = url => got(`https://api.microlink.io?url=${url}`)
 
 ## API
 
-### memoizeOne(fn, [isEqual])
+### memoizeOne(fn, [isEqual], [options])
 
 #### fn
 
@@ -63,6 +63,15 @@ Default: [`fast-deep-equal`](https://github.com/epoberezkin/fast-deep-equal)
 The compare function to determinate if both executions are the same.
 
 An equality function should return true if the arguments are equal. If true is returned then the wrapped function will not be called.
+
+#### options
+
+##### cachePromiseRejection
+
+Type: `boolean`<br>
+Default: `false`
+
+Cache rejected promises.
 
 ## License
 

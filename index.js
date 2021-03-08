@@ -2,7 +2,11 @@
 
 const deepEqual = require('fast-deep-equal')
 
-const memoizeOne = (fn, isEqual = deepEqual) => {
+const memoizeOne = (
+  fn,
+  isEqual = deepEqual,
+  { cachePromiseRejection = false } = {}
+) => {
   if (!fn) throw new TypeError('You have to provide a `fn` function.')
 
   let calledOnce = false
@@ -12,7 +16,12 @@ const memoizeOne = (fn, isEqual = deepEqual) => {
   return async (...newArgs) => {
     if (calledOnce && isEqual(newArgs, oldArgs)) return lastResult
 
-    lastResult = await fn(...newArgs)
+    lastResult = fn(...newArgs)
+
+    if (!cachePromiseRejection && lastResult.catch) {
+      lastResult.catch(() => (calledOnce = false))
+    }
+
     calledOnce = true
     oldArgs = newArgs
 
