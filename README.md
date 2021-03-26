@@ -27,7 +27,7 @@ $ npm install async-memoize-one --save
 const memoizeOne = require('async-memoize-one')
 const got = require('got')
 
-const fetchData = url => got(`https://api.microlink.io?url=${url}`)
+const fetchData = url => memoizeOne(got(`https://api.microlink.io?url=${url}`))
 
 ;(async () => {
   // fecthing data for first time
