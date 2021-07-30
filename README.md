@@ -1,5 +1,7 @@
 <div align="center">
   <img src="https://cdn.microlink.io/logo/banner.png" alt="microlink">
+  <br>
+  <br>
 </div>
 
 ![Last version](https://img.shields.io/github/tag/microlinkhq/async-memoize-one.svg?style=flat-square)
