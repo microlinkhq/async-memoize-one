@@ -26,23 +26,31 @@ $ npm install async-memoize-one --save
 ## Usage
 
 ```js
-const memoizeOne = require('async-memoize-one')
-const got = require('got')
+import memoizeOne from 'async-memoize-one'
+import got from 'got'
 
-const fetchData = url => memoizeOne(got(`https://api.microlink.io?url=${url}`))
+const fetchData = memoizeOne(url => got(`https://api.microlink.io?url=${url}`))
 
 ;(async () => {
   // fecthing data for first time
+  console.time('fetch')
   await fetchData('https://example.com/one')
+  console.timeEnd('fetch')
 
   // served data from cache; no fetching!
+  console.time('fetch')
   await fetchData('https://example.com/one')
+  console.timeEnd('fetch')
 
   // previous execution parameters are different, so fetching again
+  console.time('fetch')
   await fetchData('https://example.com/two')
+  console.timeEnd('fetch')
 
   // previous execution parameters are different, so fetching again
+  console.time('fetch')
   await fetchData('https://example.com/one')
+  console.timeEnd('fetch')
 })()
 ```
 
