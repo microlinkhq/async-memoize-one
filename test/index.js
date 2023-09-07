@@ -1,7 +1,7 @@
 'use strict'
 
+const { setTimeout } = require('timers/promises')
 const pReflect = require('p-reflect')
-const delay = require('delay')
 const test = require('ava')
 
 const memoizeOne = require('..')
@@ -75,7 +75,7 @@ test('`{ cachePromiseRejection: true }`', async t => {
   const memoizedCall = memoizeOne(call)
 
   pReflect(memoizedCall())
-  await delay(100)
+  await setTimeout(100)
   pReflect(memoizedCall())
   pReflect(memoizedCall())
 

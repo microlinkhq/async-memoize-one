@@ -46,7 +46,6 @@
     "c8": "latest",
     "ci-publish": "latest",
     "conventional-github-releaser": "latest",
-    "delay": "latest",
     "finepack": "latest",
     "git-authors-cli": "latest",
     "nano-staged": "latest",
