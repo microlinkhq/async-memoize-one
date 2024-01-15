@@ -1,7 +1,7 @@
 {
   "name": "async-memoize-one",
   "description": "memoize the last result, in async way",
-  "homepage": "https://nicedoc.io/microlinkhq/async-memoize-one",
+  "homepage": "https://github.com/microlinkhq/async-memoize-one",
   "version": "1.1.6",
   "main": "index.js",
   "author": {
@@ -45,9 +45,9 @@
     "ava": "latest",
     "c8": "latest",
     "ci-publish": "latest",
-    "conventional-github-releaser": "latest",
     "finepack": "latest",
     "git-authors-cli": "latest",
+    "github-generate-release": "latest",
     "nano-staged": "latest",
     "npm-check-updates": "latest",
     "p-reflect": "2",
@@ -71,7 +71,7 @@
     "prerelease": "npm run update:check && npm run contributors",
     "pretest": "npm run lint",
     "release": "standard-version -a",
-    "release:github": "conventional-github-releaser -p angular",
+    "release:github": "github-generate-release",
     "release:tags": "git push --follow-tags origin HEAD:master",
     "test": "c8 ava",
     "update": "ncu -u",
@@ -84,7 +84,7 @@
     ]
   },
   "nano-staged": {
-    "*.js,!*.min.js,": [
+    "*.js": [
       "prettier-standard",
       "standard --fix"
     ],
