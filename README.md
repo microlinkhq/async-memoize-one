@@ -6,7 +6,6 @@
 </div>
 
 ![Last version](https://img.shields.io/github/tag/microlinkhq/async-memoize-one.svg?style=flat-square)
-[![Build Status](https://img.shields.io/travis/com/microlinkhq/async-memoize-one/master.svg?style=flat-square)](https://travis-ci.com/microlinkhq/async-memoize-one)
 [![Coverage Status](https://img.shields.io/coveralls/microlinkhq/async-memoize-one.svg?style=flat-square)](https://coveralls.io/github/microlinkhq/async-memoize-one)
 [![NPM Status](https://img.shields.io/npm/dm/async-memoize-one.svg?style=flat-square)](https://www.npmjs.org/package/async-memoize-one)
 
