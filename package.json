@@ -3,6 +3,7 @@
   "description": "memoize the last result, in async way",
   "homepage": "https://github.com/microlinkhq/async-memoize-one",
   "version": "1.1.9",
+  "types": "./index.d.ts",
   "main": "index.js",
   "author": {
     "email": "hello@microlink.io",
@@ -13,6 +14,14 @@
     {
       "name": "Kiko Beats",
       "email": "josefrancisco.verdu@gmail.com"
+    },
+    {
+      "name": "Alexander Prinzhorn",
+      "email": "alexander@prinzhorn.it"
+    },
+    {
+      "name": "theluckystrike",
+      "email": "theluckystrike@users.noreply.github.com"
     }
   ],
   "repository": {
@@ -59,8 +68,8 @@
     "node": ">= 12"
   },
   "files": [
-    "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "index.js"
   ],
   "scripts": {
     "clean": "rm -rf node_modules",
@@ -101,6 +110,5 @@
   "simple-git-hooks": {
     "commit-msg": "npx commitlint --edit",
     "pre-commit": "npx nano-staged"
-  },
-  "types": "./index.d.ts"
+  }
 }
