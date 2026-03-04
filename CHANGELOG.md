@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/microlinkhq/async-memoize-one/compare/v1.1.9...v1.2.0) (2026-03-04)
+
+
+### Features
+
+* add TypeScript type definitions ([7fbba50](https://github.com/microlinkhq/async-memoize-one/commit/7fbba50c8c57e7bea1ea77d78209b9e23d0e6975)), closes [#3](https://github.com/microlinkhq/async-memoize-one/issues/3)
+
 ### 1.1.9 (2025-08-12)
 
 ### 1.1.8 (2024-05-09)
