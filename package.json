@@ -60,7 +60,8 @@
     "node": ">= 12"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ],
   "scripts": {
     "clean": "rm -rf node_modules",
@@ -98,5 +99,6 @@
   "simple-git-hooks": {
     "commit-msg": "npx commitlint --edit",
     "pre-commit": "npx nano-staged"
-  }
+  },
+  "types": "./index.d.ts"
 }
