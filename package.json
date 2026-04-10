@@ -58,7 +58,7 @@
     "git-authors-cli": "latest",
     "github-generate-release": "latest",
     "nano-staged": "latest",
-    "p-reflect": "2",
+    "p-reflect": "3",
     "simple-git-hooks": "latest",
     "standard": "latest",
     "standard-markdown": "latest",
