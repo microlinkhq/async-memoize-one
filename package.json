@@ -2,7 +2,7 @@
   "name": "async-memoize-one",
   "description": "memoize the last result, in async way",
   "homepage": "https://github.com/microlinkhq/async-memoize-one",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "types": "./index.d.ts",
   "main": "index.js",
   "author": {

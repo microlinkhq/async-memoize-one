@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.2.1 (2026-04-14)
+
 ## [1.2.0](https://github.com/microlinkhq/async-memoize-one/compare/v1.1.9...v1.2.0) (2026-03-04)
 
 
