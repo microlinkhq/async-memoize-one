@@ -12,16 +12,8 @@
   },
   "contributors": [
     {
-      "name": "Kiko Beats",
+      "name": "Jose Francisco 'Kiko' Verdú Gambín",
       "email": "josefrancisco.verdu@gmail.com"
-    },
-    {
-      "name": "Alexander Prinzhorn",
-      "email": "alexander@prinzhorn.it"
-    },
-    {
-      "name": "theluckystrike",
-      "email": "theluckystrike@users.noreply.github.com"
     }
   ],
   "repository": {
@@ -50,7 +42,6 @@
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
-
     "ava": "latest",
     "c8": "latest",
     "ci-publish": "latest",
