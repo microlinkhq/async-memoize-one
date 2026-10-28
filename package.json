@@ -52,7 +52,8 @@
     "simple-git-hooks": "latest",
     "standard": "latest",
     "standard-markdown": "latest",
-    "standard-version": "latest"
+    "standard-version": "latest",
+    "typescript": "latest"
   },
   "engines": {
     "node": ">= 12"
@@ -73,7 +74,8 @@
     "release": "standard-version -a",
     "release:github": "github-generate-release",
     "release:tags": "git push --follow-tags origin HEAD:master",
-    "test": "c8 ava"
+    "test": "npm run test:types && c8 ava",
+    "test:types": "tsc --noEmit --strict --module nodenext --moduleResolution nodenext --target es2022 test/types.mts"
   },
   "license": "MIT",
   "commitlint": {

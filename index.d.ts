@@ -1,9 +1,11 @@
-export interface MemoizeOneOptions {
-  /**
-   * Whether to cache promise rejections.
-   * @default false
-   */
-  cachePromiseRejection?: boolean
+declare namespace memoizeOne {
+  interface MemoizeOneOptions {
+    /**
+     * Whether to cache promise rejections.
+     * @default false
+     */
+    cachePromiseRejection?: boolean
+  }
 }
 
 /**
@@ -21,8 +23,10 @@ export interface MemoizeOneOptions {
  *   return fetch(url).then(res => res.json())
  * })
  */
-export default function memoizeOne<T extends (...args: any[]) => Promise<any>>(
+declare function memoizeOne<T extends (...args: any[]) => Promise<any>>(
   fn: T,
   isEqual?: (newArgs: any[], oldArgs: any[]) => boolean,
-  options?: MemoizeOneOptions
+  options?: memoizeOne.MemoizeOneOptions
 ): T
+
+export = memoizeOne
