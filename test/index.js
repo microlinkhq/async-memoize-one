@@ -2,7 +2,7 @@
 
 const { setTimeout } = require('timers/promises')
 const pReflect = require('p-reflect')
-const test = require('ava')
+const test = require('ava').default
 
 const memoizeOne = require('..')
 
