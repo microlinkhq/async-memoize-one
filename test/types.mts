@@ -56,10 +56,12 @@ const byId = memoizeOne(fetchUser, ([newId], [oldId]) => {
 // @ts-expect-error arguments are checked against `fn` parameters
 byId('1')
 
-memoizeOne(fetchUser, ([newId]) => {
+memoizeOne(fetchUser, ([newId], [oldId]) => {
   // @ts-expect-error comparator arguments are `fn`'s parameter types
   const id: string = newId
-  return id === ''
+  // @ts-expect-error previous arguments are `fn`'s parameter types too
+  const previous: string = oldId
+  return id === previous
 })
 
 declare function promiseOf<T> (value: T): Promise<T>
@@ -76,10 +78,12 @@ explicit(1)
 // @ts-expect-error an explicit function type still drops its properties
 console.log(memoizeOne<typeof tagged>(tagged).cacheKey, explicitResult)
 
-memoizeOne<Fetch>(async url => url, ([url]) => {
+memoizeOne<Fetch>(async url => url, ([url], [previous]) => {
   // @ts-expect-error an explicit function type still types comparator arguments
   const port: number = url
-  return port === 1
+  // @ts-expect-error previous arguments keep that explicit function type too
+  const earlier: number = previous
+  return port === earlier
 })
 
 type Nested = (n: number) => Promise<Promise<number>>
