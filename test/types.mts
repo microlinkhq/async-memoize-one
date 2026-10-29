@@ -23,6 +23,16 @@ memoizeOne(fetchUser, undefined, { cachePromiseRejection: 'yes' })
 memoizeOne(fetchUser, undefined, { cachePromiseRejection: 1 })
 // @ts-expect-error cachePromiseRejection is boolean
 memoizeOne(fetchUser, undefined, { cachePromiseRejection: null })
+// @ts-expect-error cachePromiseRejection is boolean
+memoizeOne(fetchUser, undefined, { cachePromiseRejection: {} })
+// @ts-expect-error cachePromiseRejection is boolean
+memoizeOne(fetchUser, undefined, { cachePromiseRejection: 1n })
+// @ts-expect-error cachePromiseRejection is boolean
+memoizeOne(fetchUser, undefined, { cachePromiseRejection: Symbol() })
+// @ts-expect-error cachePromiseRejection is boolean
+memoizeOne(fetchUser, undefined, { cachePromiseRejection: [true] })
+// @ts-expect-error cachePromiseRejection is boolean
+memoizeOne(fetchUser, undefined, { cachePromiseRejection: () => true })
 // @ts-expect-error unknown option
 memoizeOne(fetchUser, undefined, { extra: true })
 // @ts-expect-error null is not a comparator
@@ -106,6 +116,16 @@ memoizeOne(fetchUser, () => 'no')
 memoizeOne(fetchUser, () => {})
 // @ts-expect-error the comparator has to return a boolean
 memoizeOne(fetchUser, () => null)
+// @ts-expect-error the comparator has to return a boolean
+memoizeOne(fetchUser, () => ({}))
+// @ts-expect-error the comparator has to return a boolean
+memoizeOne(fetchUser, () => 1n)
+// @ts-expect-error the comparator has to return a boolean
+memoizeOne(fetchUser, () => Symbol())
+// @ts-expect-error the comparator has to return a boolean
+memoizeOne(fetchUser, () => [true])
+// @ts-expect-error the comparator has to return a boolean
+memoizeOne(fetchUser, () => () => true)
 
 declare function promiseOf<T> (value: T): Promise<T>
 const nested = memoizeOne((n: number) => promiseOf(promiseOf(n)))
@@ -146,6 +166,16 @@ memoizeOne<Fetch>(async url => url, () => 'no')
 memoizeOne<Fetch>(async url => url, () => {})
 // @ts-expect-error an explicit function type still requires a boolean comparator
 memoizeOne<Fetch>(async url => url, () => null)
+// @ts-expect-error an explicit function type still requires a boolean comparator
+memoizeOne<Fetch>(async url => url, () => ({}))
+// @ts-expect-error an explicit function type still requires a boolean comparator
+memoizeOne<Fetch>(async url => url, () => 1n)
+// @ts-expect-error an explicit function type still requires a boolean comparator
+memoizeOne<Fetch>(async url => url, () => Symbol())
+// @ts-expect-error an explicit function type still requires a boolean comparator
+memoizeOne<Fetch>(async url => url, () => [true])
+// @ts-expect-error an explicit function type still requires a boolean comparator
+memoizeOne<Fetch>(async url => url, () => () => true)
 
 type Nested = (n: number) => Promise<Promise<number>>
 const nestedExplicit: Promise<number> = memoizeOne<Nested>(n => promiseOf(promiseOf(n)))(1)
