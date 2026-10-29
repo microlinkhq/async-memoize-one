@@ -17,6 +17,10 @@ memoizeOne(fetchUser, undefined, falseOptions)
 memoizeOne(fetchUser, undefined, omittedOptions)
 memoizeOne(fetchUser, undefined, { cachePromiseRejection: false })
 memoizeOne(fetchUser, undefined, { cachePromiseRejection: undefined })
+type ExactOptionalProbe = { cachePromiseRejection?: boolean }
+// @ts-expect-error explicit undefined needs `| undefined` when exactOptionalPropertyTypes is on
+const rejectedUndefined: ExactOptionalProbe = { cachePromiseRejection: undefined }
+console.log(rejectedUndefined)
 // @ts-expect-error cachePromiseRejection is boolean
 memoizeOne(fetchUser, undefined, { cachePromiseRejection: 'yes' })
 // @ts-expect-error cachePromiseRejection is boolean
