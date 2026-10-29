@@ -5,6 +5,8 @@ const options: MemoizeOneOptions = { cachePromiseRejection: true }
 const fetchUser = async (id: number): Promise<{ id: number }> => ({ id })
 
 const memoized = memoizeOne(fetchUser)
+// @ts-expect-error parameters stay required
+memoized()
 const withEquality = memoizeOne(fetchUser, (newArgs, oldArgs) => newArgs[0] === oldArgs[0], options)
 
 const user: Promise<{ id: number }> = memoized(1)
@@ -63,6 +65,8 @@ memoizeOne(fetchUser, ([newId], [oldId]) => {
   const previous: string = oldId
   return id === previous
 })
+// @ts-expect-error the comparator has to return a boolean
+memoizeOne(fetchUser, () => 1)
 
 declare function promiseOf<T> (value: T): Promise<T>
 const nested = memoizeOne((n: number) => promiseOf(promiseOf(n)))
@@ -73,6 +77,8 @@ console.log(identityResult, withDefaultResult, unannotated, signedResult, untype
 type Fetch = (url: string) => Promise<string>
 const explicit = memoizeOne<Fetch>(async url => url)
 const explicitResult: Promise<string> = explicit('a')
+// @ts-expect-error an explicit function type still requires its parameters
+explicit()
 // @ts-expect-error an explicit function type still checks arguments
 explicit(1)
 // @ts-expect-error an explicit function type still drops its properties
@@ -85,6 +91,8 @@ memoizeOne<Fetch>(async url => url, ([url], [previous]) => {
   const earlier: number = previous
   return port === earlier
 })
+// @ts-expect-error an explicit function type still requires a boolean comparator
+memoizeOne<Fetch>(async url => url, () => 1)
 
 type Nested = (n: number) => Promise<Promise<number>>
 const nestedExplicit: Promise<number> = memoizeOne<Nested>(n => promiseOf(promiseOf(n)))(1)
