@@ -75,7 +75,7 @@
     "release:github": "github-generate-release",
     "release:tags": "git push --follow-tags origin HEAD:master",
     "test": "npm run test:types && c8 ava",
-    "test:types": "tsc --noEmit --strict --module nodenext --moduleResolution nodenext --target es2022 test/types.mts"
+    "test:types": "tsc --noEmit --strict --exactOptionalPropertyTypes --module nodenext --moduleResolution nodenext --target es2022 test/types.mts"
   },
   "license": "MIT",
   "commitlint": {

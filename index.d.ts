@@ -4,7 +4,7 @@ declare namespace memoizeOne {
      * Whether to cache promise rejections.
      * @default false
      */
-    cachePromiseRejection?: boolean
+    cachePromiseRejection?: boolean | undefined
   }
 }
 
