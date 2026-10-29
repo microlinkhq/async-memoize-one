@@ -23,10 +23,15 @@ declare namespace memoizeOne {
  *   return fetch(url).then(res => res.json())
  * })
  */
-declare function memoizeOne<T extends (...args: any[]) => Promise<any>>(
-  fn: T,
-  isEqual?: (newArgs: any[], oldArgs: any[]) => boolean,
+declare function memoizeOne<Args extends any[], Result extends Promise<any>>(
+  fn: (this: void, ...args: Args) => Result,
+  isEqual?: (newArgs: Args, oldArgs: Args) => boolean,
   options?: memoizeOne.MemoizeOneOptions
-): T
+): (...args: Args) => Promise<Awaited<Result>>
+declare function memoizeOne<Fn extends (this: void, ...args: any[]) => Promise<any>>(
+  fn: Fn,
+  isEqual?: (newArgs: Parameters<Fn>, oldArgs: Parameters<Fn>) => boolean,
+  options?: memoizeOne.MemoizeOneOptions
+): (...args: Parameters<Fn>) => Promise<Awaited<ReturnType<Fn>>>
 
 export = memoizeOne
