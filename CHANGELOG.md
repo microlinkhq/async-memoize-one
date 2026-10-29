@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.2.4 (2026-10-29)
+
+
+### Bug Fixes
+
+* **types:** describe the CommonJS export with export = ([#24](https://github.com/microlinkhq/async-memoize-one/issues/24)) ([b36ba9e](https://github.com/microlinkhq/async-memoize-one/commit/b36ba9e19353cab5ed4f5965d234ebd7460bd3cc))
+
 ### 1.2.3 (2026-10-28)
 
 ### 1.2.2 (2026-10-28)

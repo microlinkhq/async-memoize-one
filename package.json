@@ -2,7 +2,7 @@
   "name": "async-memoize-one",
   "description": "Async memoize-one: cache only the last result of an async function for cheap repeats.",
   "homepage": "https://github.com/microlinkhq/async-memoize-one",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "types": "./index.d.ts",
   "main": "index.js",
   "author": {
