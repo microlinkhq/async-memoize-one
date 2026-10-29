@@ -2,11 +2,28 @@ import memoizeOne from '../index.js'
 import type { MemoizeOneOptions } from '../index.js'
 
 const options: MemoizeOneOptions = { cachePromiseRejection: true }
+const falseOptions: MemoizeOneOptions = { cachePromiseRejection: false }
+const omittedOptions: MemoizeOneOptions = {}
 const fetchUser = async (id: number): Promise<{ id: number }> => ({ id })
 
 const memoized = memoizeOne(fetchUser)
 // @ts-expect-error parameters stay required
 memoized()
+// @ts-expect-error there is no second parameter
+memoized(1, 2)
+// @ts-expect-error fn is required
+memoizeOne()
+memoizeOne(fetchUser, undefined, falseOptions)
+memoizeOne(fetchUser, undefined, omittedOptions)
+memoizeOne(fetchUser, undefined, { cachePromiseRejection: false })
+// @ts-expect-error cachePromiseRejection is boolean
+memoizeOne(fetchUser, undefined, { cachePromiseRejection: 'yes' })
+// @ts-expect-error unknown option
+memoizeOne(fetchUser, undefined, { extra: true })
+// @ts-expect-error null is not a comparator
+memoizeOne(fetchUser, null)
+// @ts-expect-error options are not a comparator
+memoizeOne(fetchUser, { cachePromiseRejection: true })
 const withEquality = memoizeOne(fetchUser, (newArgs, oldArgs) => newArgs[0] === oldArgs[0], options)
 
 const user: Promise<{ id: number }> = memoized(1)
@@ -43,6 +60,17 @@ memoizeOne((id: number): PromiseLike<number> => Promise.resolve(id))
 const withDefault = memoizeOne(async (a: number, b = 2) => a + b)
 const withDefaultResult: Promise<number> = withDefault(1)
 
+type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false
+const empty = memoizeOne(async () => {})
+const emptyIsVoid: Equal<ReturnType<typeof empty>, Promise<void>> = true
+const nulled = memoizeOne(async () => null)
+const nulledIsNull: Equal<ReturnType<typeof nulled>, Promise<null>> = true
+const fromUndefined = memoizeOne(async () => undefined)
+const fromUndefinedIsUndefined: Equal<ReturnType<typeof fromUndefined>, Promise<undefined>> = true
+const counted: Promise<number> = memoizeOne(async (...nums: number[]) => nums.length)(1, 2)
+// @ts-expect-error rest arguments are numbers
+memoizeOne(async (...nums: number[]) => nums.length)('a')
+
 const unannotated: (url: string) => Promise<string> = memoizeOne(async url => String(url))
 
 const signed = memoizeOne((n: number) => (n > 0 ? Promise.resolve('positive') : Promise.resolve(0)))
@@ -72,7 +100,7 @@ declare function promiseOf<T> (value: T): Promise<T>
 const nested = memoizeOne((n: number) => promiseOf(promiseOf(n)))
 const nestedResult: Promise<number> = nested(1)
 
-console.log(identityResult, withDefaultResult, unannotated, signedResult, untypedResult, nestedResult)
+console.log(identityResult, withDefaultResult, unannotated, signedResult, untypedResult, nestedResult, emptyIsVoid, nulledIsNull, fromUndefinedIsUndefined, counted)
 
 type Fetch = (url: string) => Promise<string>
 const explicit = memoizeOne<Fetch>(async url => url)
@@ -81,6 +109,14 @@ const explicitResult: Promise<string> = explicit('a')
 explicit()
 // @ts-expect-error an explicit function type still checks arguments
 explicit(1)
+// @ts-expect-error an explicit function type still rejects extra arguments
+explicit('a', true)
+// @ts-expect-error an explicit function type still requires fn
+memoizeOne<Fetch>()
+// @ts-expect-error null is not a comparator
+memoizeOne<Fetch>(async url => url, null)
+// @ts-expect-error options are not a comparator
+memoizeOne<Fetch>(async url => url, { cachePromiseRejection: true })
 // @ts-expect-error an explicit function type still drops its properties
 console.log(memoizeOne<typeof tagged>(tagged).cacheKey, explicitResult)
 

@@ -23,12 +23,15 @@ declare namespace memoizeOne {
  *   return fetch(url).then(res => res.json())
  * })
  */
-declare function memoizeOne<Args extends any[], Result extends Promise<any>>(
+declare function memoizeOne<Args extends any[], Result extends Promise<unknown>>(
+  // `this: void` rejects a declared this parameter. A class method's
+  // ThisParameterType is unknown, the same as a plain function, so a check
+  // that rejects unknown this rejects those functions too.
   fn: (this: void, ...args: Args) => Result,
   isEqual?: (newArgs: Args, oldArgs: Args) => boolean,
   options?: memoizeOne.MemoizeOneOptions
 ): (...args: Args) => Promise<Awaited<Result>>
-declare function memoizeOne<Fn extends (this: void, ...args: any[]) => Promise<any>>(
+declare function memoizeOne<Fn extends (this: void, ...args: any[]) => Promise<unknown>>(
   fn: Fn,
   isEqual?: (newArgs: Parameters<Fn>, oldArgs: Parameters<Fn>) => boolean,
   options?: memoizeOne.MemoizeOneOptions
