@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.2.5 (2026-10-29)
+
+
+### Bug Fixes
+
+* **types:** return what the memoized function actually is ([#26](https://github.com/microlinkhq/async-memoize-one/issues/26)) ([8bc68ef](https://github.com/microlinkhq/async-memoize-one/commit/8bc68efaed8b2e8e9465804e23fbfb8dd4c1fcb6))
+
 ### 1.2.4 (2026-10-29)
 
 
