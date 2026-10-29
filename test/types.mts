@@ -16,8 +16,13 @@ memoizeOne()
 memoizeOne(fetchUser, undefined, falseOptions)
 memoizeOne(fetchUser, undefined, omittedOptions)
 memoizeOne(fetchUser, undefined, { cachePromiseRejection: false })
+memoizeOne(fetchUser, undefined, { cachePromiseRejection: undefined })
 // @ts-expect-error cachePromiseRejection is boolean
 memoizeOne(fetchUser, undefined, { cachePromiseRejection: 'yes' })
+// @ts-expect-error cachePromiseRejection is boolean
+memoizeOne(fetchUser, undefined, { cachePromiseRejection: 1 })
+// @ts-expect-error cachePromiseRejection is boolean
+memoizeOne(fetchUser, undefined, { cachePromiseRejection: null })
 // @ts-expect-error unknown option
 memoizeOne(fetchUser, undefined, { extra: true })
 // @ts-expect-error null is not a comparator
@@ -95,6 +100,12 @@ memoizeOne(fetchUser, ([newId], [oldId]) => {
 })
 // @ts-expect-error the comparator has to return a boolean
 memoizeOne(fetchUser, () => 1)
+// @ts-expect-error the comparator has to return a boolean
+memoizeOne(fetchUser, () => 'no')
+// @ts-expect-error the comparator has to return a boolean
+memoizeOne(fetchUser, () => {})
+// @ts-expect-error the comparator has to return a boolean
+memoizeOne(fetchUser, () => null)
 
 declare function promiseOf<T> (value: T): Promise<T>
 const nested = memoizeOne((n: number) => promiseOf(promiseOf(n)))
@@ -129,6 +140,12 @@ memoizeOne<Fetch>(async url => url, ([url], [previous]) => {
 })
 // @ts-expect-error an explicit function type still requires a boolean comparator
 memoizeOne<Fetch>(async url => url, () => 1)
+// @ts-expect-error an explicit function type still requires a boolean comparator
+memoizeOne<Fetch>(async url => url, () => 'no')
+// @ts-expect-error an explicit function type still requires a boolean comparator
+memoizeOne<Fetch>(async url => url, () => {})
+// @ts-expect-error an explicit function type still requires a boolean comparator
+memoizeOne<Fetch>(async url => url, () => null)
 
 type Nested = (n: number) => Promise<Promise<number>>
 const nestedExplicit: Promise<number> = memoizeOne<Nested>(n => promiseOf(promiseOf(n)))(1)
